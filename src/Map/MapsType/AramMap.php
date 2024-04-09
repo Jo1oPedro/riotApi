@@ -1,6 +1,6 @@
 <?php
 
-namespace Riot\Api\map\MapsType;
+namespace Riot\Map\MapsType;
 
 class AramMap extends Map
 {

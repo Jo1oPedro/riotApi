@@ -1,6 +1,6 @@
 <?php
 
-namespace Riot\Api\map\Analyzers;
+namespace Riot\Map\Analyzers;
 
 interface Analyzer
 {

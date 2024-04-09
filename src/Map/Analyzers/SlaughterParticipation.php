@@ -1,10 +1,10 @@
 <?php
 
-namespace Riot\Api\map\Analyzers;
+namespace Riot\Map\Analyzers;
 
-use Riot\Api\map\Plots\AssistPlot;
-use Riot\Api\map\Plots\DeathPlot;
-use Riot\Api\map\Plots\KillPlot;
+use Riot\Map\Plots\AssistPlot;
+use Riot\Map\Plots\DeathPlot;
+use Riot\Map\Plots\KillPlot;
 
 class SlaughterParticipation implements Analyzer
 {

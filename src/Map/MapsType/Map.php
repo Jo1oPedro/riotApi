@@ -1,9 +1,9 @@
 <?php
 
-namespace Riot\Api\map\MapsType;
+namespace Riot\Map\MapsType;
 
-use Riot\Api\map\Analyzers\Analyzer;
-use Riot\Api\map\PlotsType\PlotType;
+use Riot\Map\Analyzers\Analyzer;
+use Riot\Map\PlotsType\PlotType;
 
 abstract class Map
 {

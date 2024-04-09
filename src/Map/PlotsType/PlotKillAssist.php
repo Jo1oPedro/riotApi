@@ -1,10 +1,10 @@
 <?php
 
-namespace Riot\Api\map\PlotsType;
+namespace Riot\Map\PlotsType;
 
-use Riot\Api\Image;
-use Riot\Api\map\Analyzers\Analyzer;
-use Riot\Api\map\MapsType\Map;
+use Riot\Image;
+use Riot\Map\Analyzers\Analyzer;
+use Riot\Map\MapsType\Map;
 
 class PlotKillAssist implements PlotType
 {

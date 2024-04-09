@@ -1,6 +1,6 @@
 <?php
 
-namespace Riot\Api\api;
+namespace Riot\Api;
 
 class RiotApiClient
 {

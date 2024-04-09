@@ -2,7 +2,7 @@
     "name": "riot/api",
     "autoload": {
         "psr-4": {
-            "Riot\\Api\\": "src/"
+            "Riot\\": "src/"
         }
     },
     "authors": [

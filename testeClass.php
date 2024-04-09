@@ -3,17 +3,17 @@
 declare(strict_types = 1);
 ini_set("memory_limit", "-1");
 
-use Riot\Api\api\RiotApiClient;
-use Riot\Api\map\Analyzers\SlaughterParticipation;
-use Riot\Api\map\MapsType\ClassicMap;
-use Riot\Api\map\PlotsType\PlotKillAssistDeath;
+use Riot\Api\RiotApiClient;
+use Riot\Map\Analyzers\SlaughterParticipation;
+use Riot\Map\MapsType\ClassicMap;
+use Riot\Map\PlotsType\PlotKillAssistDeath;
 use Symfony\Component\Dotenv\Dotenv;
 
 require_once __DIR__ . "/vendor/autoload.php";
 
 (new Dotenv())->loadEnv(__DIR__ . "/.env");
 
-$match = 8;
+$match = 11;
 
 $maps = [
     "ONEFORALL" => "Classic",
@@ -35,7 +35,7 @@ foreach($matchInfo->metadata->participants as $key => $participant) {
 $participant = $matchInfo->info->participants[$participantKey];
 
 $mapType = $maps[$matchInfo->info->gameMode];
-$mapClass = new ReflectionClass("Riot\Api\map\MapsType\\{$mapType}Map");
+$mapClass = new ReflectionClass("Riot\Map\MapsType\\{$mapType}Map");
 
 $matchInfoTimeline = $riotApiClient->getMatchInfoTimeline($matchesId[$match]);
 

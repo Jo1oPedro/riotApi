@@ -1,6 +1,6 @@
 <?php
 
-namespace Riot\Api\map\Plots;
+namespace Riot\Map\Plots;
 
 class AssistPlot extends Plot
 {

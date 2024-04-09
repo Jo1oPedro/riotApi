@@ -1,8 +1,8 @@
 <?php
 
-namespace Riot\Api;
+namespace Riot;
 
-use Riot\Api\map\Plots\Plot;
+use Riot\Map\Plots\Plot;
 
 class Image
 {
@@ -14,7 +14,7 @@ class Image
     {
         $map = imagecreatefrompng(__DIR__ . "/../MapsImage/{$map}");
 
-        // Loop through each plot and put the corresponding number on the map
+        // Loop through each plot and put the corresponding number on the Map
         foreach ($plots as $plot) {
             $color = imagecolorallocate($map, ...$plot->getRgb());
             $x = $plot->getX() - 400;
@@ -23,7 +23,7 @@ class Image
             imagettftext($map, 3500/*5000*/, 0, $x, $y, $color, __DIR__ . "/../Montserrat-VariableFont_wght.ttf", $number);
         }
 
-        // Output the modified map with numbers
+        // Output the modified Map with numbers
         imagepng($map, __DIR__ . "/../MapsImage/plotedKillAssistMap.png");
 
         // Free up memory

@@ -1,8 +1,8 @@
 <?php
 
-namespace Riot\Api\map\Plots;
+namespace Riot\Map\Plots;
 
-use Riot\Api\Image;
+use Riot\Image;
 
 abstract class Plot
 {

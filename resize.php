@@ -5,7 +5,7 @@ ini_set("memory_limit", "-1");
 $image = imagecreatetruecolor(16000, 16000);
 
 // Load the background image
-$backgroundImage = imagecreatefrompng('img-lol-map.png'); // Provide path to your background image
+$backgroundImage = imagecreatefrompng('img-lol-Map.png'); // Provide path to your background image
 
 // Get the dimensions of the background image
 $bgWidth = imagesx($backgroundImage);

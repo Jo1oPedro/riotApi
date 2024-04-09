@@ -1,12 +1,12 @@
 <?php
 
-namespace Riot\Api\map\PlotsType;
+namespace Riot\Map\PlotsType;
 
-use Riot\Api\Image;
-use Riot\Api\map\Analyzers\Analyzer;
-use Riot\Api\map\MapsType\Map;
+use Riot\Image;
+use Riot\Map\Analyzers\Analyzer;
+use Riot\Map\MapsType\Map;
 
-class PlotAssistDeath implements PlotType
+class PlotKillDeath implements PlotType
 {
     #[\Override]
     public function plot(Analyzer $analyzer, Map $map): Image
@@ -14,7 +14,7 @@ class PlotAssistDeath implements PlotType
         return (new Image())
             ->plotPositions(
                 array_merge(
-                    $analyzer->getAssistPositions(),
+                    $analyzer->getKillPositions(),
                     $analyzer->getDeathPositions()
                 ),
                 $map->getMapImage()
