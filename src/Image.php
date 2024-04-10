@@ -17,7 +17,7 @@ class Image
         // Loop through each plot and put the corresponding number on the Map
         foreach ($plots as $plot) {
             $color = imagecolorallocate($map, ...$plot->getRgb());
-            $x = $plot->getX() - 400;
+            $x = $plot->getX() - 200;
             $y = 16000 - $plot->getY();
             $number = ".";
             imagettftext($map, 3500/*5000*/, 0, $x, $y, $color, __DIR__ . "/../Montserrat-VariableFont_wght.ttf", $number);
