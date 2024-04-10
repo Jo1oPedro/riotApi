@@ -43,6 +43,6 @@ class RiotApiClientProxy implements RiotApiClientInterface
 
     public function getMatchInfoTimeline(string $matchId, $jsonDecode = true): \stdClass|string
     {
-        return $this->getMatchInfoTimeline($matchId, $jsonDecode);
+        return $this->riotApiClient->getMatchInfoTimeline($matchId, $jsonDecode);
     }
 }

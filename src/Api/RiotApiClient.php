@@ -10,7 +10,6 @@ class RiotApiClient implements RiotApiClientInterface
     public function __construct(
         private string $riotKey = "",
     ) {
-        $this->riotApiClient = new RiotApiClient($this->riotKey);
         $this->curl = new Curl();
     }
 
