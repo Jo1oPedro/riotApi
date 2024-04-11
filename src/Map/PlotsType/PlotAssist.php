@@ -3,15 +3,21 @@
 namespace Riot\Map\PlotsType;
 
 use Riot\Image;
-use Riot\Map\Analyzers\Analyzer;
+use Riot\Map\Analyzers\AnalyzerInterface;
 use Riot\Map\MapsType\Map;
 
-class PlotAssist implements PlotType
+class PlotAssist implements PlotTypeInterface
 {
     #[\Override]
-    public function plot(Analyzer $analyzer, Map $map): Image
+    public function plot(Map $map): string
     {
         return (new Image())
-            ->plotPositions($analyzer->getAssistPositions(), $map->getMapImage());
+            ->plotPositions($this, $map);
+    }
+
+    #[\Override]
+    public function getPositions(AnalyzerInterface $analyzer): array
+    {
+        return $analyzer->getAssistPositions();
     }
 }

@@ -3,15 +3,21 @@
 namespace Riot\Map\PlotsType;
 
 use Riot\Image;
-use Riot\Map\Analyzers\Analyzer;
+use Riot\Map\Analyzers\AnalyzerInterface;
 use Riot\Map\MapsType\Map;
 
-class PlotDeath implements PlotType
+class PlotDeath implements PlotTypeInterface
 {
     #[\Override]
-    public function plot(Analyzer $analyzer, Map $map): Image
+    public function plot(Map $map): string
     {
         return (new Image())
-            ->plotPositions($analyzer->getDeathPositions(), $map->getMapImage());
+            ->plotPositions($this, $map);
+    }
+
+    #[\Override]
+    public function getPositions(AnalyzerInterface $analyzer): array
+    {
+        return $analyzer->getDeathPositions();
     }
 }
