@@ -2,38 +2,44 @@
 
 namespace Riot;
 
-use Riot\Map\Plots\Plot;
+use Riot\Map\MapsType\Map;
+use Riot\Map\PlotsType\PlotTypeInterface;
 
 class Image
 {
     /**
-     * @param Plot[] $plots
-     * @return $this
+     * @param PlotTypeInterface $plotType
+     * @param Map $map
+     * @return string
      */
-    public function plotPositions(array $plots, string $map): Image
+    public function plotPositions(PlotTypeInterface $plotType, Map $map): string
     {
-        $map = imagecreatefrompng(__DIR__ . "/../MapsImage/{$map}");
+        $reflectionPlot = new \ReflectionClass($plotType);
+        $mapImage = imagecreatefrompng(__DIR__ . "/../MapsImage/{$map->getMapImage()}");
 
         // Loop through each plot and put the corresponding number on the Map
-        foreach ($plots as $plot) {
-            $color = imagecolorallocate($map, ...$plot->getRgb());
-            $x = $plot->getX() - 200;
+        foreach ($plotType->getPositions($map->getAnalyzer()) as $plot) {
+            $color = imagecolorallocate($mapImage, ...$plot->getRgb());
+            $x = $plot->getX() - 100;
             $y = 16000 - $plot->getY();
             $number = ".";
-            imagettftext($map, 3500/*5000*/, 0, $x, $y, $color, __DIR__ . "/../Montserrat-VariableFont_wght.ttf", $number);
+            imagettftext($mapImage, 3500/*5000*/, 0, $x, $y, $color, __DIR__ . "/../Montserrat-VariableFont_wght.ttf", $number);
         }
 
         // Output the modified Map with numbers
-        imagepng($map, __DIR__ . "/../MapsImage/plotedKillAssistMap.png");
+        $imageName = "{$map->getAnalyzer()->getMatchId()}&{$reflectionPlot->getShortName()}.png";
+        imagepng($mapImage, __DIR__ . "/../MapsImage/{$imageName}");
 
         // Free up memory
-        imagedestroy($map);
-        return $this;
+        imagedestroy($mapImage);
+
+        $this->resizeDown($imageName);
+        return $imageName;
     }
 
-    public function resizeDown()
+    private function resizeDown(string $imageName)
     {
-        $sourceImage = imagecreatefrompng(__DIR__ . "/../MapsImage/plotedKillAssistMap.png");
+        $sourceImage = imagecreatefrompng(__DIR__ . "/../MapsImage/{$imageName}");
 
         // Get the dimensions of the source image
         $sourceWidth = imagesx($sourceImage);
@@ -50,7 +56,7 @@ class Image
         imagecopyresampled($newImage, $sourceImage, 0, 0, 0, 0, $newWidth, $newHeight, $sourceWidth, $sourceHeight);
 
         // Save the resized image
-        imagepng($newImage, __DIR__ . "/../MapsImage/plotedKillAssistMapResized.png");
+        imagepng($newImage, __DIR__ . "/../MapsImage/{$imageName}");
 
         // Free up memory
         imagedestroy($sourceImage);
