@@ -2,22 +2,28 @@
 
 namespace Riot\Map\MapsType;
 
-use Riot\Map\Analyzers\Analyzer;
+use Riot\Map\Analyzers\AnalyzerInterface;
 use Riot\Map\PlotsType\PlotType;
+use Riot\Map\PlotsType\PlotTypeInterface;
 
 abstract class Map
 {
-    private Analyzer $analyzer;
+    private AnalyzerInterface $analyzer;
 
-    public function analyzeMap(Analyzer $analyzer, \stdClass $matchInfo, string $puuid): Map
+    public function analyzeMap(AnalyzerInterface $analyzer, \stdClass $matchInfo, array $puuids): Map
     {
-        $this->analyzer = $analyzer->analyze($matchInfo, $puuid);
+        $this->analyzer = $analyzer->analyze($matchInfo, $puuids);
         return $this;
     }
 
-    public function plotOnMap(PlotType $plot, bool $resize = true)
+    public function plotOnMap(PlotTypeInterface $plot)
     {
-        return ($resize) ? $plot->plot($this->analyzer, $this)->resizeDown() : $plot->plot($this->analyzer, $this);
+        return $plot->plot($this);
+    }
+
+    public function getAnalyzer()
+    {
+        return $this->analyzer;
     }
 
     public abstract function getMapImage(): string;
