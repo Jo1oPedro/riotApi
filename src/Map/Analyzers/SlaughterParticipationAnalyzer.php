@@ -2,11 +2,13 @@
 
 namespace Riot\Map\Analyzers;
 
+use Riot\Map\Analyzers\Analyzer;
 use Riot\Map\Plots\AssistPlot;
 use Riot\Map\Plots\DeathPlot;
 use Riot\Map\Plots\KillPlot;
+use stdClass;
 
-class SlaughterParticipation implements Analyzer
+class SlaughterParticipationAnalyzer extends Analyzer
 {
     private array $killPositions = [];
     private array $assistPositions = [];
@@ -27,34 +29,38 @@ class SlaughterParticipation implements Analyzer
         return $this->deathPositions;
     }
 
-    #[\Override]
-    public function analyze(\stdClass $matchInfo, string $puuid): Analyzer
+    private function setPositions(array $frames, array $participantsId): void
     {
-        $participants = $matchInfo->info->participants;
-        foreach($participants as $participant) {
-            if($participant->puuid === $puuid) {
-                $participantId = $participant->participantId;
-            }
-        }
-
-        $frames = $matchInfo->info->frames;
         foreach($frames as $frame) {
             foreach($frame->events as $event) {
                 if($event->type === "CHAMPION_KILL") {
-                    if($event->killerId === $participantId) {
+                    if(in_array($event->killerId, $participantsId)) {
                         $this->killPositions[] = (new KillPlot())->setX($event->position->x)->setY($event->position->y);
                         continue;
                     }
-                    if(isset($event->assistingParticipantIds) && in_array($participantId, $event->assistingParticipantIds)) {
+                    if(isset($event->assistingParticipantIds) && $assistantsId = array_intersect($participantsId, $event->assistingParticipantIds)) {
                         $this->assistPositions[] = (new AssistPlot())->setX($event->position->x)->setY($event->position->y);
                         continue;
                     }
-                    if($event->victimId === $participantId) {
+                    if(in_array($event->victimId, $participantsId)) {
                         $this->deathPositions[] = (new DeathPlot())->setX($event->position->x)->setY($event->position->y);
                     }
                 }
             }
         }
+    }
+
+    /**
+     * @param stdClass $matchInfo
+     * @param string[] $puuids
+     * @return AnalyzerInterface
+     */
+    #[\Override]
+    public function analyze(stdClass $matchInfo, array $puuids): AnalyzerInterface
+    {
+        $this->matchId = $matchInfo->metadata->matchId;
+        $participantsId = $this->getParticipantsId($matchInfo->info->participants, $puuids);
+        $this->setPositions($matchInfo->info->frames, $participantsId);
 
         return $this;
     }
