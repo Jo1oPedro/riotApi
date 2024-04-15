@@ -3,17 +3,17 @@
 declare(strict_types = 1);
 ini_set("memory_limit", "-1");
 
-use Riot\Api\RiotApiClient;
-use Riot\Map\Analyzers\SlaughterParticipation;
-use Riot\Map\MapsType\ClassicMap;
+use Riot\Api\RiotApiClientProxy;
+use Riot\Map\Analyzers\SlaughterParticipationAnalyzer;
 use Riot\Map\PlotsType\PlotKillAssistDeath;
 use Symfony\Component\Dotenv\Dotenv;
+use Riot\Discord;
 
 require_once __DIR__ . "/vendor/autoload.php";
 
 (new Dotenv())->loadEnv(__DIR__ . "/.env");
 
-$match = 11;
+$match = 14;
 
 $maps = [
     "ONEFORALL" => "Classic",
@@ -21,7 +21,7 @@ $maps = [
     "CLASSIC" => "Classic",
 ];
 
-$riotApiClient = new RiotApiClient();
+$riotApiClient = new RiotApiClientProxy($_ENV["RIOT_KEY"]);
 
 $puuid = $riotApiClient->get_puuid("CascataXFrontEnd", "BR1");
 $matchesId = $riotApiClient->getMatchesId($puuid);
@@ -39,6 +39,9 @@ $mapClass = new ReflectionClass("Riot\Map\MapsType\\{$mapType}Map");
 
 $matchInfoTimeline = $riotApiClient->getMatchInfoTimeline($matchesId[$match]);
 
-$classicMap = ($mapClass->newInstance())
-    ->analyzeMap((new SlaughterParticipation()), $matchInfoTimeline, $puuid)
+$analyzer = new SlaughterParticipationAnalyzer();
+$image = ($mapClass->newInstance())
+    ->analyzeMap($analyzer, $matchInfoTimeline, [$puuid])
     ->plotOnMap(new PlotKillAssistDeath());
+
+Discord\NewMatch::sendMessage($image);

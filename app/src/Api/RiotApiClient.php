@@ -7,6 +7,8 @@ use Riot\Helper\Curl;
 
 class RiotApiClient implements RiotApiClientInterface
 {
+    private Curl $curl;
+
     public function __construct(
         private string $riotKey = "",
     ) {
