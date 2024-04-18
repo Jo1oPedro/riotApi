@@ -1,4 +1,6 @@
 .env
-vendor
-.idea
+vendor/
+.idea/
 *.txt
+.phpunit.cache/
+.phpunit.result.cache
