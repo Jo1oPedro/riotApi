@@ -5,6 +5,11 @@
             "Riot\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Riot\\Tests": "tests"
+        }
+    },
     "authors": [
         {
             "name": "Jo1oPedro",
