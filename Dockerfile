@@ -9,10 +9,7 @@ RUN apt-get update -y && apt-get -y upgrade && apt-get install -y --no-install-r
     nano \
     sqlite3 \
     libsqlite3-dev \
-    libfreetype6-dev
-
-# dependências recomendadas de desenvolvido para ambiente linux
-RUN apt-get update && apt-get install -y \
+    libfreetype6-dev \
     zlib1g-dev \
     libzip-dev \
     unzip \
