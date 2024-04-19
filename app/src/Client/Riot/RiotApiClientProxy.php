@@ -2,10 +2,10 @@
 
 namespace App\Client\Riot;
 
+use App\Client\Exceptions\PlayerNotFound;
 use App\Client\HttpClientInterface;
 use App\Database\Connection;
 use PDO;
-
 
 class RiotApiClientProxy implements RiotApiClientInterface
 {
@@ -20,6 +20,12 @@ class RiotApiClientProxy implements RiotApiClientInterface
         $this->pdo = Connection::getInstance();
     }
 
+    /**
+     * @param string $userName
+     * @param string $tag
+     * @return string
+     * @throws PlayerNotFound
+     */
     public function get_puuid(string $userName, string $tag): string
     {
         $stmt = $this->pdo->prepare("SELECT puuid FROM users WHERE name = :name AND tag = :tag");
