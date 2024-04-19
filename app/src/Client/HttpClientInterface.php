@@ -7,5 +7,5 @@ use Symfony\Contracts\HttpClient\HttpClientInterface as SymfonyHttpClientInterfa
 interface HttpClientInterface
 {
     public function __construct(SymfonyHttpClientInterface $httpClient);
-    public function request(string $method, string $url): array;
+    public function request(string $method, string $url): Response;
 }
