@@ -2,8 +2,8 @@
 
 namespace App\Client\Riot;
 
+use App\Client\HttpClientInterface;
 use App\Helper\Curl;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class RiotApiClient implements RiotApiClientInterface
 {
@@ -19,7 +19,7 @@ class RiotApiClient implements RiotApiClientInterface
     public function get_puuid(string $userName, string $tag): string
     {
         $url = self::RIOT_ACCOUNT . "/accounts/by-riot-id/{$userName}/{$tag}?api_key={$this->riotKey}";
-        $response = $this->httpClient->request("GET", $url)->toArray();
+        $response = $this->httpClient->request("GET", $url);
         return $response["puuid"];
     }
 

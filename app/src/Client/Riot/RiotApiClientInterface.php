@@ -2,7 +2,7 @@
 
 namespace App\Client\Riot;
 
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use App\Client\HttpClientInterface;
 
 interface RiotApiClientInterface
 {

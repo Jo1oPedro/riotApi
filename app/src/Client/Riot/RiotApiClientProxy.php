@@ -2,9 +2,10 @@
 
 namespace App\Client\Riot;
 
+use App\Client\HttpClientInterface;
 use App\Database\Connection;
 use PDO;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+
 
 class RiotApiClientProxy implements RiotApiClientInterface
 {
