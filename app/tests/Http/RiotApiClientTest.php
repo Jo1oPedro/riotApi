@@ -2,10 +2,10 @@
 
 namespace App\Tests\Http;
 
+use App\Client\HttpClientInterface;
 use App\Client\Riot\RiotApiClient;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class RiotApiClientTest extends TestCase
 {
@@ -18,17 +18,13 @@ class RiotApiClientTest extends TestCase
     }
 
     #[Test]
-    public function get_puuid_returns_correctly_formated_data()
+    public function get_puuid_returns_correctly()
     {
         $this->httpClient
             ->method("request")
-            ->willReturn("");
-
-        $this->httpClient
-            ->method("ToArray")
             ->willReturn(["puuid" => "123456789"]);
 
-        $puuid = $this->riotApiClient->get_puuid("CascataXFrontEnd", "BR1");;
+        $puuid = $this->riotApiClient->get_puuid("CascataXFrontEnd", "BR1");
 
         $this->assertSame("123456789", $puuid);
     }
