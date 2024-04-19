@@ -11,9 +11,8 @@ class HttpClient implements HttpClientInterface
         private SymfonyHttpClientInterface $httpClient
     ) {}
 
-    public function request(string $method, string $url, bool $toArray = true): string|array
+    public function request(string $method, string $url): array
     {
-        $response = $this->httpClient->request($method, $url);
-        return ($toArray) ? $response->toArray() : $response->getContent();
+        return $this->httpClient->request($method, $url);
     }
 }
