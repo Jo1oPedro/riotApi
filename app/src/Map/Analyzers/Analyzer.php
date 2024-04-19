@@ -1,8 +1,8 @@
 <?php
 
-namespace Riot\Map\Analyzers;
+namespace App\Map\Analyzers;
 
-use Riot\Map\Analyzers\AnalyzerInterface;
+use App\Map\Analyzers\AnalyzerInterface;
 use stdClass;
 
 abstract class Analyzer implements AnalyzerInterface

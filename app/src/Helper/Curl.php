@@ -1,6 +1,6 @@
 <?php
 
-namespace Riot\Helper;
+namespace App\Helper;
 
 use stdClass;
 

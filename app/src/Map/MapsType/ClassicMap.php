@@ -1,6 +1,6 @@
 <?php
 
-namespace Riot\Map\MapsType;
+namespace App\Map\MapsType;
 
 class ClassicMap extends Map
 {

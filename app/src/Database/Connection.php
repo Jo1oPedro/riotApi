@@ -1,6 +1,6 @@
 <?php
 
-namespace Riot\Database;
+namespace App\Database;
 
 use PDO;
 

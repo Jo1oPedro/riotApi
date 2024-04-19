@@ -1,10 +1,11 @@
 <?php
 
-namespace Riot\Api;
+namespace App\Client;
 
 use PDO;
-use Riot\Database\Connection;
-use Riot\Helper\Curl;
+use App\Database\Connection;
+use App\Helper\Curl;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class RiotApiClientProxy implements RiotApiClientInterface
 {
@@ -12,9 +13,10 @@ class RiotApiClientProxy implements RiotApiClientInterface
     private PDO $pdo;
 
     public function __construct(
+        private HttpClientInterface $httpClient,
         private string $riotKey,
     ) {
-        $this->riotApiClient = new RiotApiClient($this->riotKey);
+        $this->riotApiClient = new RiotApiClient($this->httpClient, $this->riotKey);
         $this->pdo = Connection::getInstance();
     }
 

@@ -1,15 +1,16 @@
 <?php
 
-namespace Riot\Api;
+namespace App\Client;
 
 use PDO;
-use Riot\Helper\Curl;
+use App\Helper\Curl;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 interface RiotApiClientInterface
 {
     const RIOT_ACCOUNT = "https://americas.api.riotgames.com/riot/account/v1";
     const RIOT_MATCHES = "https://americas.api.riotgames.com/lol/match/v5";
-    public function __construct(string $riotKey);
+    public function __construct(HttpClientInterface $httpClient, string $riotKey);
 
     public function get_puuid(string $userName, string $tag): string;
 

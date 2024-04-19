@@ -2,16 +2,16 @@
 
 declare(strict_types = 1);
 ini_set("memory_limit", "-1");
+define("BASE_PATH", __DIR__);
+require_once __DIR__ . "/bootstrap.php";
 
-use Riot\Api\RiotApiClientProxy;
-use Riot\Map\Analyzers\SlaughterParticipationAnalyzer;
-use Riot\Map\PlotsType\PlotKillAssistDeath;
-use Symfony\Component\Dotenv\Dotenv;
-use Riot\Discord;
+use App\Client\RiotApiClientProxy;
+use App\Map\Analyzers\SlaughterParticipationAnalyzer;
+use App\Map\PlotsType\PlotKillAssistDeath;
+use App\Discord;
 
-require_once __DIR__ . "/vendor/autoload.php";
 
-(new Dotenv())->loadEnv(__DIR__ . "/.env");
+dd(BASE_PATH);
 
 $match = 14;
 

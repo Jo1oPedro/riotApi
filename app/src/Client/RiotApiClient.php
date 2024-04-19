@@ -1,15 +1,17 @@
 <?php
 
-namespace Riot\Api;
+namespace App\Client;
 
-use Riot\Database\Connection;
-use Riot\Helper\Curl;
+use App\Database\Connection;
+use App\Helper\Curl;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class RiotApiClient implements RiotApiClientInterface
 {
     private Curl $curl;
 
     public function __construct(
+        private HttpClientInterface $httpClient,
         private string $riotKey = "",
     ) {
         $this->curl = new Curl();
@@ -18,8 +20,8 @@ class RiotApiClient implements RiotApiClientInterface
     public function get_puuid(string $userName, string $tag): string
     {
         $url = self::RIOT_ACCOUNT . "/accounts/by-riot-id/{$userName}/{$tag}?api_key={$this->riotKey}";
-        $response = $this->curl->request($url, "GET");
-        return $response->puuid;
+        $response = $this->httpClient->request("GET", $url)->toArray();
+        return $response["puuid"];
     }
 
     public function getMatchesId(string $puuid, int $count = 20, string $type = "normal", $jsonDecode = true): array|string

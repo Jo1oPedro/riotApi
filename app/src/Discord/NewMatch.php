@@ -1,6 +1,6 @@
 <?php
 
-namespace Riot\Discord;
+namespace App\Discord;
 
 class NewMatch
 {

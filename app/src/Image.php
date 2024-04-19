@@ -1,9 +1,9 @@
 <?php
 
-namespace Riot;
+namespace App;
 
-use Riot\Map\MapsType\Map;
-use Riot\Map\PlotsType\PlotTypeInterface;
+use App\Map\MapsType\Map;
+use App\Map\PlotsType\PlotTypeInterface;
 
 class Image
 {

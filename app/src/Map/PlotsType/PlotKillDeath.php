@@ -1,11 +1,11 @@
 <?php
 
-namespace Riot\Map\PlotsType;
+namespace App\Map\PlotsType;
 
-use Riot\Image;
-use Riot\Map\Analyzers\Analyzer;
-use Riot\Map\Analyzers\AnalyzerInterface;
-use Riot\Map\MapsType\Map;
+use App\Image;
+use App\Map\Analyzers\Analyzer;
+use App\Map\Analyzers\AnalyzerInterface;
+use App\Map\MapsType\Map;
 
 class PlotKillDeath implements PlotTypeInterface
 {

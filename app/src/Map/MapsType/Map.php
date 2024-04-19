@@ -1,10 +1,10 @@
 <?php
 
-namespace Riot\Map\MapsType;
+namespace App\Map\MapsType;
 
-use Riot\Map\Analyzers\AnalyzerInterface;
-use Riot\Map\PlotsType\PlotType;
-use Riot\Map\PlotsType\PlotTypeInterface;
+use App\Map\Analyzers\AnalyzerInterface;
+use App\Map\PlotsType\PlotType;
+use App\Map\PlotsType\PlotTypeInterface;
 
 abstract class Map
 {
