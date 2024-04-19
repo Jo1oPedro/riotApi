@@ -11,6 +11,7 @@ class RiotApiClientTest extends TestCase
 {
     private RiotApiClient $riotApiClient;
     private HttpClientInterface $httpClient;
+
     public function setUp(): void
     {
         $this->httpClient = $this->createMock(HttpClientInterface::class);
