@@ -21,7 +21,7 @@ class RiotApiClientTest extends TestCase
     }
 
     #[Test]
-    public function get_puuid_returns_correctly()
+    public function should_return_puuid_correctly()
     {
         $this->httpClient
             ->method("request")
@@ -44,5 +44,21 @@ class RiotApiClientTest extends TestCase
         $this->expectException(PlayerNotFound::class);
         $this->expectExceptionMessage("Data not found - No results found for player with riot id {$userName}#{$tag}");
         $this->riotApiClient->get_puuid($userName, $tag);
+    }
+
+    #[Test]
+    public function should_return_matches_id_correctly()
+    {
+        $matchesId = '["BR1_2925730714","BR1_2925713324","BR1_2925688737","BR1_2925255743","BR1_2925233603","BR1_2925216479","BR1_2925198267","BR1_2923547621","BR1_2923259595","BR1_2923247695","BR1_2923181301","BR1_2920235070","BR1_2916654118","BR1_2916629545","BR1_2916396525","BR1_2916380484","BR1_2916365075","BR1_2916156285","BR1_2916141449","BR1_2916119747"]';
+        $this->httpClient
+            ->method("request")
+            ->willReturn(new Response(200, $matchesId));
+
+        $matchesId = $this->riotApiClient->getMatchesId("123456789");
+
+        $this->assertSame(
+            $matchesId,
+            $matchesId
+        );
     }
 }
