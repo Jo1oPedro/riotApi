@@ -2,9 +2,9 @@
 
 namespace App\Tests\Http;
 
+use App\Client\Riot\RiotApiClient;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use App\Client\RiotApiClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class RiotApiClientTest extends TestCase

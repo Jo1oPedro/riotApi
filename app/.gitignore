@@ -4,3 +4,4 @@ vendor/
 *.txt
 .phpunit.cache/
 .phpunit.result.cache
+.iml

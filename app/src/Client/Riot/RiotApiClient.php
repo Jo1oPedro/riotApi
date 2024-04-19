@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Client;
+namespace App\Client\Riot;
 
-use App\Database\Connection;
 use App\Helper\Curl;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 

@@ -5,10 +5,10 @@ ini_set("memory_limit", "-1");
 define("BASE_PATH", __DIR__);
 require_once __DIR__ . "/bootstrap.php";
 
-use App\Client\RiotApiClientProxy;
+use App\Client\Riot\RiotApiClientProxy;
+use App\Discord;
 use App\Map\Analyzers\SlaughterParticipationAnalyzer;
 use App\Map\PlotsType\PlotKillAssistDeath;
-use App\Discord;
 
 
 dd(BASE_PATH);
