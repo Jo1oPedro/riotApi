@@ -13,7 +13,10 @@ require BASE_PATH . '/vendor/autoload.php';
 (new Dotenv())->loadEnv(BASE_PATH . "/.env");
 
 $httpOptions = (new HttpOptions())
-    ->setHeaders(["X-Riot-Token" => $_ENV["RIOT_KEY"], "Accept" => "application/json"])
+    ->setHeaders([
+        "X-Riot-Token" => $_ENV["RIOT_KEY"],
+        "Accept" => "application/json"
+    ])
     ->toArray();
 $symfonyHttpClient = SymfonyHttpClient::create()->withOptions($httpOptions);
 
