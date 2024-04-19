@@ -14,7 +14,7 @@ class Response
         return $this->statusCode;
     }
 
-    public function getContent($jsonDecode = true): \stdClass|string
+    public function getContent($jsonDecode = true): \stdClass|string|array
     {
         return ($jsonDecode) ? json_decode($this->content) : $this->content;
     }
