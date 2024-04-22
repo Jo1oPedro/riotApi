@@ -5,7 +5,7 @@ ini_set("memory_limit", "-1");
 $image = imagecreatetruecolor(16000, 16000);
 
 // Load the background image
-$backgroundImage = imagecreatefrompng(__DIR__ . '/MapsImage/img-lol-map.png'); // Provide path to your background image
+$backgroundImage = imagecreatefrompng(__DIR__ . '/SourceImages/img-lol-map.png'); // Provide path to your background image
 
 // Get the dimensions of the background image
 $bgWidth = imagesx($backgroundImage);
@@ -43,7 +43,7 @@ imagefilledellipse($image, $x, $y, $radius, $radius, $blue);
 
 // Output image to browser or save to a file
 header('Content-type: image/png');
-imagepng($image, __DIR__ . '/MapsImage/classic_map_16k_px.png'); // Save image to file
+imagepng($image, __DIR__ . '/SourceImages/classic_map_16k_px.png'); // Save image to file
 
 // Free up memory
 imagedestroy($image);

@@ -28,12 +28,12 @@ class NewMatch
                     ],
 
                     "image" => [
-                        "url" => "http://85.31.62.148:5000/MapsImage/{$image}?size=600",
+                        "url" => "http://85.31.62.148:5000/SourceImages/{$image}?size=600",
                     ],
 
                     // thumbnail
                     "thumbnail" => [
-                        "url" => "http://85.31.62.148:5000/MapsImage/{$image}?size=600"
+                        "url" => "http://85.31.62.148:5000/SourceImages/{$image}?size=600"
                     ],
 
                     // Author name & url

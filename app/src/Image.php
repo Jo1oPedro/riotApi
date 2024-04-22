@@ -15,7 +15,7 @@ class Image
     public function plotPositions(PlotTypeInterface $plotType, Map $map): string
     {
         $reflectionPlot = new \ReflectionClass($plotType);
-        $mapImage = imagecreatefrompng(__DIR__ . "/../MapsImage/{$map->getMapImage()}");
+        $mapImage = imagecreatefrompng(__DIR__ . "/../images/SourceImages/{$map->getMapImage()}");
 
         // Loop through each plot and put the corresponding number on the Map
         foreach ($plotType->getPositions($map->getAnalyzer()) as $plot) {
@@ -28,7 +28,7 @@ class Image
 
         // Output the modified Map with numbers
         $imageName = "{$map->getAnalyzer()->getMatchId()}&{$reflectionPlot->getShortName()}.png";
-        imagepng($mapImage, __DIR__ . "/../MapsImage/{$imageName}");
+        imagepng($mapImage, __DIR__ . "/../images/MatchsImage/{$imageName}");
 
         // Free up memory
         imagedestroy($mapImage);
@@ -39,7 +39,7 @@ class Image
 
     private function resizeDown(string $imageName)
     {
-        $sourceImage = imagecreatefrompng(__DIR__ . "/../MapsImage/{$imageName}");
+        $sourceImage = imagecreatefrompng(__DIR__ . "/../images/MatchsImage/{$imageName}");
 
         // Get the dimensions of the source image
         $sourceWidth = imagesx($sourceImage);
@@ -56,7 +56,7 @@ class Image
         imagecopyresampled($newImage, $sourceImage, 0, 0, 0, 0, $newWidth, $newHeight, $sourceWidth, $sourceHeight);
 
         // Save the resized image
-        imagepng($newImage, __DIR__ . "/../MapsImage/{$imageName}");
+        imagepng($newImage, __DIR__ . "/../images/MatchsImage/{$imageName}");
 
         // Free up memory
         imagedestroy($sourceImage);
